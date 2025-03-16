@@ -15,15 +15,21 @@ public class Admin_Pokemon {
     private void cargarPokemonsCSV(String filePath) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // Ignorar la primera línea (encabezados)
+            br.readLine(); 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length >= 4) {
-                    allPokemons.addPokemon(new Pokemon(data[0], data[1], data[2], data[3]));
+                if (data.length >= 9) { 
+                    String name = data[0];
+                    String type1 = data[2];
+                    String type2 = data[3].isEmpty() ? "" : data[3];
+                    String ability = data[8].split(",")[0]; 
+    
+                    allPokemons.addPokemon(new Pokemon(name, type1, type2, ability));
                 }
             }
         }
     }
+    
 
     public void Agregar_Pokemon_Usuario(String name) {
         Pokemon pokemon = allPokemons.getPokemon(name);
@@ -56,6 +62,13 @@ public class Admin_Pokemon {
         } else {
             resultados.forEach(System.out::println);
         }
+    }
+
+    public Almacenar_Pokemon getUserCollection() {
+        return userCollection;
+    }
+    public Almacenar_Pokemon getAllpokemons() {
+        return allPokemons;
     }
 }
 

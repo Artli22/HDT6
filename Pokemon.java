@@ -4,6 +4,7 @@ public class Pokemon {
     private String type2;
     private String ability;
     
+    // Creacion de los objetos necesarios para describir/diferenciar los pokemon
     public Pokemon(String name, String type1, String type2, String ability) {
         this.name = name;
         this.type1 = type1;
