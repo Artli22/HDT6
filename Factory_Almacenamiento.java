@@ -11,6 +11,12 @@ public class Factory_Almacenamiento {
     }
 
     // Escoge el metodo de almacenamiento mejor adpatado para cada caso
+
+    // Se utilizo el metodo HashMap para guardar los pokemon del usuario ya que es 
+    // un metodo aleatorio pero rapido, con una complejidad de tiempo de busqueda y guardado de O(1), 
+    //y como la busqueda de la informacion del pokemon se hace con otro JCF mas sofisticado, 
+    //pienso que es la mejor opcion.
+
     public Almacenar_Pokemon createStorage(String type) {
         switch (type.toLowerCase()) {
             case "user": return new Almacenamiento_HashMap();

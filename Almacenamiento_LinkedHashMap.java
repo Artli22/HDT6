@@ -1,5 +1,6 @@
 import java.util.*;
 
+// Almacenamiento LinkedHashMap
 public class Almacenamiento_LinkedHashMap implements Almacenar_Pokemon {
     private Map<String, Pokemon> pokedex = new LinkedHashMap<>();
 

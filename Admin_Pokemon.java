@@ -12,12 +12,14 @@ public class Admin_Pokemon {
         cargarPokemonsCSV(filePath);
     }
 
+    // Llamar a las caracteristicas de mayor interes del CSV
     private void cargarPokemonsCSV(String filePath) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             br.readLine(); 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
+                // Llama cada caracteristica acorde al nombre de cada columna
                 if (data.length >= 9) { 
                     String name = data[0];
                     String type1 = data[2];
@@ -30,7 +32,7 @@ public class Admin_Pokemon {
         }
     }
     
-
+    //Agrega el pokemon seleccionado al listado de pokemones del usuario
     public void Agregar_Pokemon_Usuario(String name) {
         Pokemon pokemon = allPokemons.getPokemon(name);
         if (pokemon != null) {
@@ -41,6 +43,7 @@ public class Admin_Pokemon {
         }
     }
 
+    // Muestras las caracteristicas mas importantes del pokemon
     public void Mostrar_Detalles(String name) {
         Pokemon pokemon = allPokemons.getPokemon(name);
         if (pokemon != null) {
@@ -50,7 +53,10 @@ public class Admin_Pokemon {
         }
     }
 
-    public void Buscar_por_Tipo(String type) {
+    // Hace una busqueda por tipo presentando todos los pokemons de ese tipo
+    public long Buscar_por_Tipo(String type) {
+        long startTime = System.nanoTime();
+
         List<Pokemon> resultados = new ArrayList<>();
         for (Pokemon pokemon : allPokemons.getAllPokemons()) {
             if (pokemon.getType1().equalsIgnoreCase(type) || pokemon.getType2().equalsIgnoreCase(type)) {
@@ -62,8 +68,13 @@ public class Admin_Pokemon {
         } else {
             resultados.forEach(System.out::println);
         }
+
+        long endTime = System.nanoTime();
+        return endTime - startTime;
+
     }
 
+    // Llamadas de objetos usercollection y allpokemons para ser usados en las pruebas unitarias
     public Almacenar_Pokemon getUserCollection() {
         return userCollection;
     }

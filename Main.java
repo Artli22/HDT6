@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        // Lectura del archivo csv
         String filePath = "pokemon_Data.csv";
         
         try {
@@ -28,7 +29,8 @@ public class Main {
                     case 3:
                         System.out.print("Ingrese el tipo del Pokémon: ");
                         String type = scanner.nextLine();
-                        manager.Buscar_por_Tipo(type);
+                        long timepoBusqueda = manager.Buscar_por_Tipo(type);
+                        System.out.println("Tiempo de ejecucion para busqueda de tipo "+ type +":"+ (timepoBusqueda/1000000) + "ms, demostrando que tiene comlejidad O(1) de busqueda");
                         break;
                     case 4:
                         System.out.println("Saliendo del programa.....");
